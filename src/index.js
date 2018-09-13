@@ -16,7 +16,7 @@ const mapFilter = (_d, map, filter) => {
       arr = arr.filter(filter);
     if(map)
     arr = arr.map(map);
-    return new TinySeq(arr);
+    return new Seq(arr);
   }else if(isObject(_d)){
     //object
     let r = {};
@@ -25,17 +25,17 @@ const mapFilter = (_d, map, filter) => {
         continue;
       r[k] = map ? map(_d[k], k, _d) : _d[k];
     }
-    return new TinySeq(r);
+    return new Seq(r);
   }
   throw new Error('Unreachable');
 }
 
 
 
-class TinySeq{
+class Seq{
   constructor(_d){
-    //so we can chain TinySeq
-    if(_d && isObject(_d) && _d instanceof TinySeq && _d.toRaw)
+    //so we can chain Seq
+    if(_d && isObject(_d) && _d instanceof Seq && _d.toRaw)
       _d = _d.toRaw();
     this._d = _d;
   }
@@ -94,10 +94,10 @@ class TinySeq{
   }
 
   toKeyed(){
-    return new TinySeq(this.toObject());
+    return new Seq(this.toObject());
   }
   toIndexed(){
-    return new TinySeq(this.toArray());
+    return new Seq(this.toArray());
   }
   isKeyed(){ 
     return this._isObject();
@@ -114,7 +114,7 @@ class TinySeq{
       let [newk, newv] = f([k,v]);
       ret[newk] = newv;
     });
-    return new TinySeq(ret);
+    return new Seq(ret);
   }
 
   size(){
@@ -126,7 +126,7 @@ class TinySeq{
   }
 
   concat(...args){
-    args = new TinySeq(args).map(e=>createSeq(e)).toArray();
+    args = new Seq(args).map(e=>createSeq(e)).toArray();
 
     let indexed = args.reduce(
         (prev, cur) => prev && cur.isIndexed(),
@@ -138,27 +138,27 @@ class TinySeq{
       args.forEach(e => {
         d = d.concat(e.toArray());
       });
-      return new TinySeq(d);
+      return new Seq(d);
     }else{
       let d = {};
       const addEls = (e,k) => {d[k] = e;};
       this.forEach(addEls);
       args.forEach((e) => e.forEach(addEls));
-      return new TinySeq(d);
+      return new Seq(d);
     }
   }
 
 };
 
 function createSeq(_d){
-  if(_d && isObject(_d) && _d !== null && _d instanceof TinySeq)
+  if(_d && isObject(_d) && _d !== null && _d instanceof Seq)
     return _d;
-  return new TinySeq(_d);
+  return new Seq(_d);
 }
-createSeq.class = TinySeq;
+createSeq.class = Seq;
 
 function isSeq(e){
-  return e instanceof TinySeq;
+  return e instanceof Seq;
 }
 
 export default createSeq;
