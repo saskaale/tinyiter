@@ -52,7 +52,7 @@ TinyIter([1,3,5]).filter((e) => e == 3).toArray();  // {b:3}
 
 ### Contribute
 
-Tinyiter is [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) project, so you're welcome to be one of our developers and making the library even better.
+Tinyiter is [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) project, so you're welcome to be one of our [developers](https://github.com/saskaale/tinyiter/blob/master/AUTHORS) and making the library even better.
 
 ### Testing
 We are using the Chai Assertion Library to help our library being very stable.
