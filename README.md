@@ -161,7 +161,7 @@ Seq({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value
 
 ### Contribute
 
-Tinyiter is [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) project, so you're welcome to be one of our developers and making the library even better.
+Tinyiter is [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) project, so you're welcome to be one of our [developers](https://github.com/saskaale/tinyiter/blob/master/AUTHORS) and making the library even better.
 
 ### Testing
 We are using the [Chai Assertion Library](http://www.chaijs.com/) to help our library fully tested stable.
