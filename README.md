@@ -50,7 +50,7 @@ TinyIter([1,3,5]).filter((e) => e == 3).toArray();  // {b:3}
 ```
 ### Documentation
 
-#### TinyIter()
+##### TinyIter()
 
 Creates a Sequence.
 
@@ -77,6 +77,7 @@ map(mapper: (value: V, key: K, iter: this) => M): TinyIter
 ```
 
 ###### example
+
 ```javascript
 const TinyIter = require('tinyiter')
 Seq([ 1, 2 ]).map((value, key) => key * value * 2)
@@ -187,6 +188,13 @@ toKeyed(): TinyIter
 
 ##### toRaw()
 
+Returns internal representation of Collection.
+
+```javascript
+toKeyed(): Array | {[key: string]: V}
+```
+
+Returns is either Array ( if the Collection is Indexed ) or an object ( if the Collection is Keyed ).
 
 ##### first()
 
