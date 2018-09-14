@@ -115,7 +115,7 @@ toArray(): Array<V> | Array<[K, V]>
 
 ##### filter()
 
-Returns a new TinySeq with only the values for which the predicate function returns true.
+Returns a new TinyIter with only the values for which the predicate function returns true.
 
 ```javascript
 filter(
@@ -152,7 +152,7 @@ Seq({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value
 
 ##### isIndexed()
 
-Returns boolean indicating if the wrapped element is indexed from 0 (array or its equivalent).
+Returns boolean indicating if the wrapped element is index\ed from 0 (array or its equivalent).
 
 ```javascript
 isIndexed(): boolean
@@ -168,10 +168,10 @@ isKeyed(): boolean
 
 ##### toIndexed()
 
-Returns new TinySeq with collection transformed to the indexed version.
+Returns new TinyIter with collection transformed to the indexed version.
 
 ```javascript
-toIndexed(): TinySeq
+toIndexed(): TinyIter
 ```
 
 note:
@@ -179,10 +179,10 @@ All elements are now indexed ( incrementally from 0 ).
 
 ##### toKeyed()
 
-Returns new TinySeq with collection transformed to the keyed version.
+Returns new TinyIter with collection transformed to the keyed version.
 
 ```javascript
-toKeyed(): TinySeq
+toKeyed(): TinyIter
 ```
 
 ##### toRaw()
