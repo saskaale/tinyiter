@@ -68,7 +68,7 @@ Can be constructed with either of the:
 
 Returns instance of TinyIter
 
-#### map()
+##### map()
 
 Returns a new TinyIter with values passed through a mapper function.
 
@@ -76,13 +76,13 @@ Returns a new TinyIter with values passed through a mapper function.
 map(mapper: (value: V, key: K, iter: this) => M): TinyIter
 ```
 
-##### example
+###### example
 ```javascript
 const TinyIter = require('tinyiter')
 Seq([ 1, 2 ]).map((value, key) => key * value * 2)
 ```
 
-#### forEach()
+##### forEach()
 
 The sideEffect is executed for every entry.
 
@@ -97,7 +97,7 @@ const TinyIter = require('tinyiter')
 Seq([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
 ```
 
-#### toObject()
+##### toObject()
 
 Shallowly converts the Collection to an JavaScript Object.
 
@@ -105,7 +105,7 @@ Shallowly converts the Collection to an JavaScript Object.
 toObject(): {[key: string]: V}
 ```
 
-#### toArray()
+##### toArray()
 
 Shallowly converts the Collection to an JavaScript Array.
 
@@ -113,7 +113,7 @@ Shallowly converts the Collection to an JavaScript Array.
 toArray(): Array<V> | Array<[K, V]>
 ```
 
-#### filter()
+##### filter()
 
 Returns a new TinySeq with only the values for which the predicate function returns true.
 
@@ -123,7 +123,7 @@ filter(
 ): TinyIter
 ```
 
-#### concat()
+##### concat()
 
 Returns a new Collection of the same type with other values and collection-like concatenated to this one.
 
@@ -135,7 +135,7 @@ note:
 
 This method has variable argument length with each of them can be any of those which are initiatized in the TinyIter constructor.
 
-#### mapValues()
+##### mapValues()
 
 Remap the each entry key and value to different one.
 
@@ -150,14 +150,51 @@ const TinyIter = require('tinyiter')
 Seq({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value*2];} );
 ```
 
-#### isIndexed()
-#### isKeyed()
-#### toKeyed()
-#### toKeyed()
-#### toRaw()
-#### first()
+##### isIndexed()
+
+Returns boolean indicating if the wrapped element is indexed from 0 (array or its equivalent).
+
+```javascript
+isIndexed(): boolean
+```
+
+##### isKeyed()
+
+Returns boolean indicating if the wrapped element is keyed (object or its equivalent).
+
+```javascript
+isKeyed(): boolean
+```
+
+##### toIndexed()
+
+Returns new TinySeq with collection transformed to the indexed version.
+
+```javascript
+toIndexed(): TinySeq
+```
+
+note:
+All elements are now indexed ( incrementally from 0 ).
+
+##### toKeyed()
+
+Returns new TinySeq with collection transformed to the keyed version.
+
+```javascript
+toKeyed(): TinySeq
+```
+
+##### toRaw()
 
 
+##### first()
+
+Get the first element from the collection.
+
+```javascript
+toKeyed(): any
+```
 
 ### Contribute
 
