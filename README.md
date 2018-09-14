@@ -55,9 +55,9 @@ TinyIter([1,3,5]).filter((e) => e == 3).toArray();  // {b:3}
 Creates a Sequence.
 
 ```javascript
-    TinyIter(iter: I): TinyIter
-    TinyIter(obj: {[key: string]: V}): TinyIter
-    TinyIter(): TinyIter
+TinyIter(iter: I): TinyIter
+TinyIter(obj: {[key: string]: V}): TinyIter
+TinyIter(): TinyIter
 ```
 
 Can be constructed with either of the:
@@ -90,7 +90,8 @@ The sideEffect is executed for every entry.
 forEach(sideEffect: (value: V, key: K, iter: this) => M): undefined
 ```
 
-##### example
+example:
+
 ```javascript
 const TinyIter = require('tinyiter')
 Seq([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
@@ -112,6 +113,49 @@ Shallowly converts the Collection to an JavaScript Array.
 toArray(): Array<V> | Array<[K, V]>
 ```
 
+#### filter()
+
+Returns a new TinySeq with only the values for which the predicate function returns true.
+
+```javascript
+filter(
+    predicate: (value: V, key: K, iter: this) => boolean
+): TinyIter
+```
+
+#### concat()
+
+Returns a new Collection of the same type with other values and collection-like concatenated to this one.
+
+```javascript
+concat(...valuesOrCollections: Array<any>): TinyIter
+```
+
+note:
+
+This method has variable argument length with each of them can be any of those which are initiatized in the TinyIter constructor.
+
+#### mapValues()
+
+Remap the each entry key and value to different one.
+
+```javascript
+mapValues(
+    mapper: (Array<key: K, value: V>) => Array<key: K, value: V>
+): TinyIter
+```
+
+```javascript
+const TinyIter = require('tinyiter')
+Seq({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value*2];} );
+```
+
+#### isIndexed()
+#### isKeyed()
+#### toKeyed()
+#### toKeyed()
+#### toRaw()
+#### first()
 
 
 
