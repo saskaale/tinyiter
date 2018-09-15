@@ -6,6 +6,7 @@
     "test": "mocha --compilers babel-register --require babel-polyfill",
     "build": "npx webpack"
   },
+  "keywords": ["object", "array", "map", "filter", "forEach", "iterate"],
   "repository": {
     "type": "git",
     "url": "https://github.com/saskaale/tinyiter"
