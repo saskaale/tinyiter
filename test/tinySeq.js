@@ -41,7 +41,7 @@ describe('TinySeq', () => {
 
     it("obj", () => {
         expect([...TinySeq({a:1,b:7,c:5})]).to.deep.equal([1,7,5]);
-    })
+    });
   });
 
 
