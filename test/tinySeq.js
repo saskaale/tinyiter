@@ -34,6 +34,17 @@ describe('TinySeq', () => {
     });
   });
 
+  describe('#iterator', () => {
+    it("arr", () => {
+        expect([...TinySeq([1,2,5])]).to.deep.equal([1,2,5]);
+    });
+
+    it("obj", () => {
+        expect([...TinySeq({a:1,b:7,c:5})]).to.deep.equal([1,7,5]);
+    })
+  });
+
+
   describe('#indexed', () => {
     it("arr", () => {
         const data = [1,2,3];

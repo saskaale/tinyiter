@@ -116,6 +116,19 @@ class Seq{
     });
     return new Seq(ret);
   }
+  *[Symbol.iterator]() {
+    if(this._isArray()){
+      for(let e of this._d){
+        yield e;
+      }
+    }else if(this._isObject()){
+      for(let e in this._d){
+        yield this._d[e];
+      }
+    }else{
+      throw new Error('Unreachable');
+    }
+  }
 
   size(){
     if(this._isArray())
