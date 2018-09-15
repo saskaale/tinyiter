@@ -45,6 +45,44 @@ describe('TinySeq', () => {
   });
 
 
+
+  const sortDesc = (a, b) => {
+    if(a > b)
+        return -1;
+    if(b > a)
+        return 1;
+    return 0;
+  }
+
+  describe('#sortArr', () => {
+    it("arrSort", () => {
+        expect(TinySeq([7,2,5]).sort().toArray()).to.deep.equal([2,5,7]);
+    });
+
+    it("arrSortFunc", () => {
+        expect(TinySeq([7,2,5]).sort(sortDesc).toArray()).to.deep.equal([7,5,2]);
+    });
+  });
+
+  describe('#sortObj', () => {
+    it("objSort", () => {
+        expect(TinySeq({a:7,b:2,c:5}).sort().toObject()).to.deep.equal({b:2,c:5,a:7});
+    });
+
+    it("objSortFunc", () => {
+        expect(TinySeq({a:7,b:2,c:5}).sort(sortDesc).toObject()).to.deep.equal({a:7,c:5,b:2});
+    });
+  });
+
+  describe('#sortBy', () => {
+    const inverse = a => -a;
+
+    it("sortBy", () => {
+        expect(TinySeq({a:7,b:2,c:5}).sortBy(inverse).toArray()).to.deep.equal([7,5,2]);
+    });
+  });
+
+
   describe('#indexed', () => {
     it("arr", () => {
         const data = [1,2,3];

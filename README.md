@@ -151,6 +151,51 @@ const TinyIter = require('tinyiter')
 Seq({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value*2];} );
 ```
 
+##### sort()
+
+Returns a new Collection of the same type which includes the same entries, sorted by using a comparator.
+
+```javascript
+sort(comparator?: (valueA: V, valueB: V) => number): TinyIter
+```
+
+If a comparator is not provided, a default comparator uses < and >.
+
+```javascript
+comparator(valueA, valueB):
+```
+* Returns 0 if the elements should not be swapped.
+* Returns -1 (or any negative number) if valueA comes before valueB
+* Returns 1 (or any positive number) if valueA comes after valueB
+* Is pure, i.e. it must always return the same value for the same pair of values.
+
+Example:
+```javascript
+const TinyIter = require('tinyiter');
+TinyIter({ "c": 3, "a": 1, "b": 2 }).sort((a, b) => {
+  if (a < b) { return -1; }
+  if (a > b) { return 1; }
+  if (a === b) { return 0; }
+});
+```
+
+##### sortBy()
+
+Like sort, but also accepts a comparatorValueMapper which allows for sorting by more sophisticated means:
+
+```javascript
+sortBy(
+    comparatorValueMapper: (value: V, key: K, iter: this) => C,
+    comparator?: (valueA: C, valueB: C) => number
+): TinyIter
+```
+
+Example:
+```javascript
+hitters.sortBy(hitter => hitter.avgHits)
+```
+
+
 ##### isIndexed()
 
 Returns boolean indicating if the wrapped element is index\ed from 0 (array or its equivalent).

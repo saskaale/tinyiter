@@ -30,6 +30,7 @@ const mapFilter = (_d, map, filter) => {
   throw new Error('Unreachable');
 }
 
+const cmp = (a,b) => (a < b) ? -1 : ( a > b ? 1 : 0)
 
 
 class Seq{
@@ -91,6 +92,32 @@ class Seq{
   }
   map(f){
     return mapFilter(this._d, f);
+  }
+  sort(comparator = cmp){
+    if(this._isArray()){
+      return new Seq([...this._d].sort(comparator));
+    }else if(this._isObject()){
+      const _d = this._d;
+      const compareVals = (k1, k2) => {
+        const v1 = _d[k1];
+        const v2 = _d[k2];
+        return comparator(v1, v2);
+      }
+      let newd = {};
+      let keys = Object.keys(this._d)
+                  .sort(compareVals)
+                  .forEach((k) => {
+                    newd[k] = _d[k];
+                  });
+      return new Seq(newd);
+    }
+
+    throw new Error('Unreachable');
+  }
+  sortBy(getValue, comparator = cmp){
+    const compareBy = (a, b) => 
+      comparator(getValue(a), getValue(b));
+    return this.sort(compareBy);
   }
 
   toKeyed(){
