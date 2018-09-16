@@ -8,7 +8,9 @@ function isArray(v){
   return Array.isArray(v);
 }
 
-let UNREACHABLE = () => {throw new Error("Unreachable")};
+let UNREACHABLE = () => {
+  throw new Error("Unreachable");
+};
 
 const mapFilter = (_d, map, filter) => {
   if(isArray(_d)){
