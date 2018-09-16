@@ -1,7 +1,7 @@
 # tinyiter [![Build Status](https://travis-ci.com/saskaale/tinyiter.svg?branch=master)](https://travis-ci.com/saskaale/tinyiter)
 > *"An easy way to iterate and manipulate with javascript objects and arrays."*
 
-Very lightweight library (6KB :hammer:) to manipulate javascript objects and arrays. No 3rd party dependencies, no bullshit :heart:. Inspired by [Immutable.js Seq](https://facebook.github.io/immutable-js/docs/#/Seq)
+Very lightweight library (3KB :hammer:) to manipulate javascript objects and arrays. No 3rd party dependencies, no bullshit :heart:. Inspired by [Immutable.js Seq](https://facebook.github.io/immutable-js/docs/#/Seq)
 
 ### Table of Contents
 * [Installation](#installation)
@@ -68,6 +68,21 @@ Can be constructed with either of the:
 
 Returns instance of TinyIter
 
+##### forEach()
+
+The sideEffect is executed for every entry.
+
+```javascript
+forEach(sideEffect: (value: V, key: K, iter: this) => M): undefined
+```
+
+example:
+
+```javascript
+const TinyIter = require('tinyiter')
+Seq([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
+```
+
 ##### map()
 
 Returns a new TinyIter with values passed through a mapper function.
@@ -83,20 +98,27 @@ const TinyIter = require('tinyiter')
 Seq([ 1, 2 ]).map((value, key) => key * value * 2)
 ```
 
-##### forEach()
+##### reduce()
 
-The sideEffect is executed for every entry.
-
-```javascript
-forEach(sideEffect: (value: V, key: K, iter: this) => M): undefined
-```
-
-example:
+Reduces the Collection to a value by calling the reducer for every entry in the Collection and passing along the reduced value.
 
 ```javascript
-const TinyIter = require('tinyiter')
-Seq([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
+reduce(
+reducer: (reduction: R, value: V, key: K, iter: this) => R,
+initialReduction: R,
+context?: any
+): TinyIter
+reduce(
+reducer: (reduction: R, value: V, key: K, iter: this) => R,
+initialReduction: R,
+context?: any
+): TinyIter
+
 ```
+
+If initialReduction is not provided, the first item in the Collection will be used.
+
+See [Array#reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce).
 
 ##### toObject()
 

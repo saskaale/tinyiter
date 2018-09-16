@@ -150,6 +150,21 @@ describe('TinySeq', () => {
     });
   });
 
+  describe('#reduce', () => {
+    it("skipFirst", () => {
+        expect(TinySeq({a:4,c:7,b:10}).reduce((prev, cur) => prev+':'+cur))
+            .to.equal('4:7:10');
+    });
+    it("value", () => {
+        expect(TinySeq({a:4,c:7,b:10}).reduce((prev, cur) => prev+cur+',', 'val ='))
+            .to.equal('val =4,7,10,');
+    });
+    it("keys", () => {
+        expect(TinySeq({a:4,c:7,b:10}).reduce((prev, _, key) => prev+key+',', 'val ='))
+            .to.equal('val =a,c,b,');
+    });
+  })
+
   describe('#advanced', () => {
     it("mapValues", () => {
         expect(TinySeq([4,7,10]).mapValues(([k,v]) => ([k*2, v*3])).toObject())

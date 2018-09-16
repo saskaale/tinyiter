@@ -86,7 +86,16 @@ class Seq{
 
     throw new Error('Unreachable');
   }
-
+  reduce(f, reduction){
+    this.forEach((v,k) => {
+      if(reduction === undefined){
+        reduction = v;
+      }else{
+        reduction = f(reduction, v, k);
+      }
+    });
+    return reduction;
+  }
   filter(f) {
     return mapFilter(this._d, undefined, f);
   }
