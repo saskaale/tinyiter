@@ -80,7 +80,7 @@ example:
 
 ```javascript
 const TinyIter = require('tinyiter')
-Seq([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
+TinyIter([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
 ```
 
 ##### map()
@@ -95,7 +95,7 @@ map(mapper: (value: V, key: K, iter: this) => M): TinyIter
 
 ```javascript
 const TinyIter = require('tinyiter')
-Seq([ 1, 2 ]).map((value, key) => key * value * 2)
+TinyIter([ 1, 2 ]).map((value, key) => key * value * 2)
 ```
 
 ##### reduce()
@@ -170,7 +170,7 @@ mapValues(
 
 ```javascript
 const TinyIter = require('tinyiter')
-Seq({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value*2];} );
+TinyIter({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value*2];} );
 ```
 
 ##### sort()
