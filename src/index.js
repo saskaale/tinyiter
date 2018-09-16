@@ -8,6 +8,8 @@ function isArray(v){
   return Array.isArray(v);
 }
 
+let UNREACHABLE = () => {throw new Error("Unreachable")};
+
 const mapFilter = (_d, map, filter) => {
   if(isArray(_d)){
     //array
@@ -27,7 +29,7 @@ const mapFilter = (_d, map, filter) => {
     }
     return new Seq(r);
   }
-  throw new Error('Unreachable');
+  UNREACHABLE();
 }
 
 const cmp = (a,b) => (a < b) ? -1 : ( a > b ? 1 : 0)
@@ -70,22 +72,9 @@ class Seq{
     }else if(this._isObject()){
       return Object.values(this._d);
     }
-    throw new Error('Unreachable');
+    UNREACHABLE();
   }
 
-  first(){
-    if(this._isArray()){
-      return this._d[0];
-    }else if(this._isObject()){
-      //object
-      for(let k in this._d){
-        return _d[k];
-      }
-      return undefined;
-    }
-
-    throw new Error('Unreachable');
-  }
   reduce(f, reduction){
     this.forEach((v,k) => {
       if(reduction === undefined){
@@ -96,6 +85,7 @@ class Seq{
     });
     return reduction;
   }
+
   filter(f) {
     return mapFilter(this._d, undefined, f);
   }
@@ -121,7 +111,7 @@ class Seq{
       return new Seq(newd);
     }
 
-    throw new Error('Unreachable');
+    UNREACHABLE();
   }
   sortBy(getValue, comparator = cmp){
     const compareBy = (a, b) => 
@@ -162,8 +152,22 @@ class Seq{
         yield this._d[e];
       }
     }else{
-      throw new Error('Unreachable');
+      UNREACHABLE();
     }
+  }
+
+  first(){
+    if(this._isArray()){
+      return this._d[0];
+    }else if(this._isObject()){
+      //object
+      for(let k in this._d){
+        return _d[k];
+      }
+      return undefined;
+    }
+
+    UNREACHABLE();
   }
 
   size(){
@@ -171,7 +175,8 @@ class Seq{
       return this._d.length;
     else if(this._isObject())
       return Object.keys(this._d).length;
-    throw new Error('Unreachable');
+
+    UNREACHABLE();
   }
 
   concat(...args){
