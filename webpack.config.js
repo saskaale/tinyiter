@@ -20,6 +20,6 @@ module.exports = {
         filename: 'index.js',
         path: path.resolve(__dirname, 'lib'),
         library: 'library',
-        libraryTarget: 'umd'
+        libraryTarget: 'commonjs'
     }
   };
