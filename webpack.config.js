@@ -19,7 +19,8 @@ module.exports = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, 'lib'),
+        globalObject: 'typeof self !== \'undefined\' ? self : this',  //HACK FOR THE https://github.com/webpack/webpack/issues/6784
         library: 'library',
-        libraryTarget: 'commonjs'
+        libraryTarget: 'umd'
     }
   };
