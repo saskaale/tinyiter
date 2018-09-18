@@ -20,8 +20,8 @@ $ yarn install tinyiter
 ```javascript
 import TinyIter from 'tinyiter';
 
-TinyIter({a:1, b:3}).filter((e) => e == 3).toObject();  // {b:3}
-TinyIter([1,3,5]).filter((e) => e == 3).toArray();  // {b:3}
+TinyIter({a:1, b:3, c:5}).filter((e) => e >= 3).toObject();  // {b:3, c:5}
+TinyIter([1,3,5]).filter((e) => e >= 3).toArray();  // [3,5]
 ```
 
 ### Features
