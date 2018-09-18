@@ -32,6 +32,21 @@ const mapped = foo.map(x => x * x);
 var mapped = foo.map(function (x) { return x * x; });
 ```
 
+Has the native support for ES2015 iterators.
+
+```javascript
+import TinyIter from 'tinyiter';
+const collection = TinyIter([1,5,7,15]);
+
+// for..of literal
+for(let e of collection){
+    /// ... do any magic here
+}
+
+//array literal
+let asArr = [...collection];
+```
+
 #### Chaining the functions
 
 The tinyiter sequence is intended to be chained:
@@ -79,7 +94,7 @@ forEach(sideEffect: (value: V, key: K, iter: this) => M): undefined
 example:
 
 ```javascript
-const TinyIter = require('tinyiter')
+import TinyIter from 'tinyiter';
 TinyIter([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
 ```
 
@@ -94,7 +109,7 @@ map(mapper: (value: V, key: K, iter: this) => M): TinyIter
 ###### example
 
 ```javascript
-const TinyIter = require('tinyiter')
+import TinyIter from 'tinyiter';
 TinyIter([ 1, 2 ]).map((value, key) => key * value * 2)
 ```
 
@@ -158,6 +173,15 @@ note:
 
 This method has variable argument length with each of them can be any of those which are initiatized in the TinyIter constructor.
 
+##### size()
+
+Returns number of the elements in the Collection.
+
+```javascript
+size(): number
+```
+
+
 ##### mapValues()
 
 Remap the each entry key and value to different one.
@@ -169,7 +193,7 @@ mapValues(
 ```
 
 ```javascript
-const TinyIter = require('tinyiter')
+import TinyIter from 'tinyiter';
 TinyIter({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, value*2];} );
 ```
 
@@ -193,7 +217,7 @@ comparator(valueA, valueB):
 
 Example:
 ```javascript
-const TinyIter = require('tinyiter');
+import TinyIter from 'tinyiter';
 TinyIter({ "c": 3, "a": 1, "b": 2 }).sort((a, b) => {
   if (a < b) { return -1; }
   if (a > b) { return 1; }
@@ -258,7 +282,7 @@ toKeyed(): TinyIter
 Returns internal representation of Collection.
 
 ```javascript
-toKeyed(): Array | {[key: string]: V}
+toRaw(): Array | {[key: string]: V}
 ```
 
 Returns is either Array ( if the Collection is Indexed ) or an object ( if the Collection is Keyed ).
@@ -268,7 +292,7 @@ Returns is either Array ( if the Collection is Indexed ) or an object ( if the C
 Get the first element from the collection.
 
 ```javascript
-toKeyed(): any
+first(): any
 ```
 
 ### Contribute
