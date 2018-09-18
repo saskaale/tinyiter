@@ -1,6 +1,6 @@
 {
   "name": "tinyiter",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "An easy way to iterate and manipulate with javascript objects and arrays",
   "scripts": {
     "test": "mocha --compilers babel-register --require babel-polyfill",
