@@ -112,6 +112,30 @@ describe('TinySeq', () => {
     });
   });
 
+  describe('#every', () => {
+    it("empty", () => {
+        expect(TinySeq([]).every(() => false)).to.eq(true);
+    });
+    it("nonvalid", () => {
+        expect(TinySeq([1,2,5,10,132,13]).every(e => e>10)).to.eq(false);
+    });
+    it("valid", () => {
+        expect(TinySeq([11,12,15,10,132,13]).every(e => e>=10)).to.eq(true);
+    });
+  });
+
+  describe('#some', () => {
+    it("empty", () => {
+        expect(TinySeq([]).some(() => true)).to.eq(false);
+    });
+    it("valid", () => {
+        expect(TinySeq([1,2,5,10,132,13]).some(e => e>10)).to.eq(true);
+    });
+    it("nonvalid", () => {
+        expect(TinySeq([11,12,15,10,132,13]).some(e => e<10)).to.eq(false);
+    });
+  });
+
   describe('#mapForeach', () => {
     it("arrMap", () => {
         expect(TinySeq([1,{a:1,b:2},3])

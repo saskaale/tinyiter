@@ -8,9 +8,16 @@ function isArray(v){
   return Array.isArray(v);
 }
 
-let UNREACHABLE = () => {
+const UNREACHABLE = () => {
   throw new Error("Unreachable");
 };
+
+const bindContext = (f, context) => 
+  context ?
+      f.bind(context)
+      :
+      f;
+
 
 const mapFilter = (_d, map, filter) => {
   if(isArray(_d)){
@@ -53,8 +60,8 @@ class Seq{
     return isArray(this._d);
   }
 
-  forEach(f){
-    this.map(f);
+  forEach(f, context){
+    this.map(f, context);
   }
 
   toObject(){
@@ -77,7 +84,9 @@ class Seq{
     UNREACHABLE();
   }
 
-  reduce(f, reduction){
+  reduce(f, reduction, context){
+    f = bindContext(f, context);
+
     this.forEach((v,k) => {
       if(reduction === undefined){
         reduction = v;
@@ -88,10 +97,22 @@ class Seq{
     return reduction;
   }
 
-  filter(f) {
+  some(f, context){
+    f = bindContext(f, context);
+    return this.reduce((prev, v, k) => prev || f(v,k), false);
+  }
+
+  every(f, context){
+    f = bindContext(f, context);
+    return this.reduce((prev, v, k) => prev && f(v,k), true);
+  }
+
+  filter(f, context) {
+    f = bindContext(f, context);
     return mapFilter(this._d, undefined, f);
   }
-  map(f){
+  map(f, context){
+    f = bindContext(f, context);
     return mapFilter(this._d, f);
   }
   sort(comparator = cmp){
@@ -136,7 +157,9 @@ class Seq{
   toRaw(){
     return this._d;
   }
-  mapValues(f){
+  mapValues(f, context){
+    f = bindContext(f, context);
+
     let ret = {};
     this.forEach((v, k) => {
       let [newk, newv] = f([k,v]);
