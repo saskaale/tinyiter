@@ -307,9 +307,6 @@ Use [GitHub issues](https://github.com/saskaale/tinyiter/issues) for requests.
 
 We actively welcome [pull requests](https://github.com/saskaale/tinyiter/pulls), feel free to contribute.
 
-[comment]: # #### Changelog
-[comment]: # Changes are tracked as GitHub releases.
-
 ### Licence
 This project is licenced by [Apache License 2.0](https://github.com/saskaale/tinyiter/blob/master/LICENSE).
 
