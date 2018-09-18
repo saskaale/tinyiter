@@ -16,6 +16,14 @@ Add library into your project:
 $ yarn install tinyiter
 ```
 
+### Usage
+```javascript
+import TinyIter from 'tinyiter';
+
+TinyIter({a:1, b:3}).filter((e) => e == 3).toObject();  // {b:3}
+TinyIter([1,3,5]).filter((e) => e == 3).toArray();  // {b:3}
+```
+
 ### Features
 
 #### Embraces ES2015
@@ -55,14 +63,6 @@ The tinyiter sequence is intended to be chained:
 const e = TinyIter({a:1, b:3, c:6, e:10}).filter(e => e >= 6 ).map(e => e * 2 ).toObject(); // {c:12, e:20}
 ```
 
-
-### Usage
-```javascript
-import TinyIter from 'tinyiter';
-
-TinyIter({a:1, b:3}).filter((e) => e == 3).toObject();  // {b:3}
-TinyIter([1,3,5]).filter((e) => e == 3).toArray();  // {b:3}
-```
 ### Documentation
 
 ##### TinyIter()
