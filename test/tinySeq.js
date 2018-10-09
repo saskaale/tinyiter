@@ -141,16 +141,16 @@ describe('TinySeq', () => {
 
   describe('#findLast', () => {
     it("first", () => {
-        expect(TinySeq([1,2,4,5]).find((e) => e>=2)).to.eq(5);
+        expect(TinySeq([1,2,4,5]).findLast((e) => e>=2)).to.eq(5);
     });
     it("empty", () => {
-        expect(TinySeq([1,2,4,5]).find(() => false)).to.eq(undefined);
+        expect(TinySeq([1,2,4,5]).findLast(() => false)).to.eq(undefined);
     });
     it("key", () => {
-        expect(TinySeq([1,2,5,10,132,13]).find((_,k) => k===2)).to.eq(5);
+        expect(TinySeq([1,2,5,10,132,13]).findLast((_,k) => k===2)).to.eq(5);
     });
     it("obj", () => {
-        expect(TinySeq({a:1,b:14,d:5,e:6}).find((_, k) => k==='b')).to.eq(14);
+        expect(TinySeq({a:1,b:14,d:5,e:6}).findLast((_, k) => k==='b')).to.eq(14);
     });
   });
 
