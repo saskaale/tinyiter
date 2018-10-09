@@ -124,6 +124,36 @@ describe('TinySeq', () => {
     });
   });
 
+  describe('#find', () => {
+    it("first", () => {
+        expect(TinySeq([1,2,4,5]).find((e) => e>=2)).to.eq(2);
+    });
+    it("empty", () => {
+        expect(TinySeq([1,2,4,5]).find(() => false)).to.eq(undefined);
+    });
+    it("key", () => {
+        expect(TinySeq([1,2,5,10,132,13]).find((_,k) => k===2)).to.eq(5);
+    });
+    it("obj", () => {
+        expect(TinySeq({a:1,b:14,d:5,e:6}).find((_, k) => k==='b')).to.eq(14);
+    });
+  });
+
+  describe('#findLast', () => {
+    it("first", () => {
+        expect(TinySeq([1,2,4,5]).find((e) => e>=2)).to.eq(5);
+    });
+    it("empty", () => {
+        expect(TinySeq([1,2,4,5]).find(() => false)).to.eq(undefined);
+    });
+    it("key", () => {
+        expect(TinySeq([1,2,5,10,132,13]).find((_,k) => k===2)).to.eq(5);
+    });
+    it("obj", () => {
+        expect(TinySeq({a:1,b:14,d:5,e:6}).find((_, k) => k==='b')).to.eq(14);
+    });
+  });
+
   describe('#some', () => {
     it("empty", () => {
         expect(TinySeq([]).some(() => true)).to.eq(false);

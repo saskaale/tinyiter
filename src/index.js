@@ -97,6 +97,32 @@ class Seq{
     return reduction;
   }
 
+  find(f, context){
+    f = bindContext(f, context);
+    if(this._isArray()){
+      return this._d.find(f);
+    }else if(this._isObject()){
+      for(let e in this._d){
+        if(f(this._d[e], e)){
+          return this._d[e];
+        }
+      }
+    }else{
+      UNREACHABLE();
+    }
+  }
+
+  findLast(f, context){
+    let ret = undefined;
+    this.forEach((v,k) => {
+      if(f(v,k)){
+        ret = v;
+      }
+    }, context);
+    return ret;
+  }
+
+
   some(f, context){
     f = bindContext(f, context);
     return this.reduce((prev, v, k) => prev || f(v,k), false);

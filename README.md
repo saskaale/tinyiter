@@ -88,7 +88,10 @@ Returns instance of TinyIter
 The sideEffect is executed for every entry.
 
 ```javascript
-forEach(sideEffect: (value: V, key: K, iter: this) => M): undefined
+forEach(
+    sideEffect: (value: V, key: K, iter: this) => M,
+    context?: any
+): undefined
 ```
 
 example:
@@ -103,7 +106,10 @@ TinyIter([ 1, 2 ]).forEach((value, key) => { console.log(key+" = "+value ); }
 Returns a new TinyIter with values passed through a mapper function.
 
 ```javascript
-map(mapper: (value: V, key: K, iter: this) => M): TinyIter
+map(
+    mapper: (value: V, key: K, iter: this) => M,
+    context?: any
+): TinyIter
 ```
 
 ###### example
@@ -157,7 +163,8 @@ Returns a new TinyIter with only the values for which the predicate function ret
 
 ```javascript
 filter(
-    predicate: (value: V, key: K, iter: this) => boolean
+    predicate: (value: V, key: K, iter: this) => boolean,
+    context?: any
 ): TinyIter
 ```
 
@@ -181,6 +188,27 @@ Returns number of the elements in the Collection.
 size(): number
 ```
 
+##### find()
+
+Returns the first value for which the predicate returns true.
+
+```javascript
+filter(
+    predicate: (value: V, key: K, iter: this) => boolean,
+    context?: any
+): TinyIter
+```
+
+##### findLast()
+
+Returns the last value for which the predicate returns true.
+
+```javascript
+filter(
+    predicate: (value: V, key: K, iter: this) => boolean,
+    context?: any
+): TinyIter
+```
 
 ##### mapValues()
 
@@ -188,7 +216,8 @@ Remap the each entry key and value to different one.
 
 ```javascript
 mapValues(
-    mapper: (Array<key: K, value: V>) => Array<key: K, value: V>
+    mapper: (Array<key: K, value: V>) => Array<key: K, value: V>,
+    context?: any
 ): TinyIter
 ```
 
@@ -202,7 +231,9 @@ TinyIter({ 'a': 1, 'b' : 2 }).mapValues(([key, value]) => {return ['mapped_'+k, 
 Returns a new Collection of the same type which includes the same entries, sorted by using a comparator.
 
 ```javascript
-sort(comparator?: (valueA: V, valueB: V) => number): TinyIter
+sort(
+    comparator?: (valueA: V, valueB: V) => number
+): TinyIter
 ```
 
 If a comparator is not provided, a default comparator uses < and >.
