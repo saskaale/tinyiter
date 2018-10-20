@@ -139,6 +139,21 @@ describe('TinySeq', () => {
     });
   });
 
+  describe('#findIndex', () => {
+    it("first", () => {
+        expect(TinySeq([1,2,4,5]).findIndex((e) => e>=2)).to.eq(1);
+    });
+    it("empty", () => {
+        expect(TinySeq([1,2,4,5]).findIndex(() => false)).to.eq(-1);
+    });
+    it("key", () => {
+        expect(TinySeq([1,2,5,10,132,13]).findIndex((_,k) => k===2)).to.eq(2);
+    });
+    it("obj", () => {
+        expect(TinySeq({a:1,b:14,d:5,e:6}).findIndex((_, k) => k==='b')).to.eq('b');
+    });
+  });
+
   describe('#findLast', () => {
     it("first", () => {
         expect(TinySeq([1,2,4,5]).findLast((e) => e>=2)).to.eq(5);

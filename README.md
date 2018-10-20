@@ -193,21 +193,34 @@ size(): number
 Returns the first value for which the predicate returns true.
 
 ```javascript
-filter(
+find(
     predicate: (value: V, key: K, iter: this) => boolean,
     context?: any
-): TinyIter
+): any
 ```
+
+##### findIndex()
+
+Returns the first index for which the predicate returns true.
+If the callback never returns a truthy value or the array's length is 0, findIndex returns -1.
+
+```javascript
+findIndex(
+    predicate: (value: V, key: K, iter: this) => boolean,
+    context?: any
+): any
+```
+
 
 ##### findLast()
 
 Returns the last value for which the predicate returns true.
 
 ```javascript
-filter(
+findLast(
     predicate: (value: V, key: K, iter: this) => boolean,
     context?: any
-): TinyIter
+): any
 ```
 
 ##### mapValues()
