@@ -1,4 +1,4 @@
-import TinySeq from '../src';
+import TinySeq from '../lib';
 import { assert, expect } from 'chai';
 
 describe('TinySeq', () => {
