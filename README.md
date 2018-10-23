@@ -1,7 +1,7 @@
 # tinyiter [![Build Status](https://travis-ci.com/saskaale/tinyiter.svg?branch=master)](https://travis-ci.com/saskaale/tinyiter)
 > *"An easy way to iterate and manipulate with javascript objects and arrays."*
 
-Very lightweight library (3KB :hammer:) to manipulate javascript objects and arrays. No 3rd party dependencies, no bullshit :heart:. Inspired by [Immutable.js Seq](https://facebook.github.io/immutable-js/docs/#/Seq)
+Very lightweight library (6KB :hammer:) to manipulate javascript objects and arrays. No 3rd party dependencies, no bullshit :heart:. Inspired by [Immutable.js Seq](https://facebook.github.io/immutable-js/docs/#/Seq)
 
 ### Table of Contents
 * [Installation](#installation)
